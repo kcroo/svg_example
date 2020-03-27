@@ -1,3 +1,9 @@
+/* Sources
+https://codepen.io/brianplaza/pen/DfKsx
+https://github.com/WebsiteBeaver/interactive-and-responsive-svg-map-of-us-states-capitals
+https://codepen.io/websitebeaver/pen/oLGGNz
+*/
+
 map = document.getElementById("oregon_map");
 district1 = document.getElementById("district_1");
 description = document.getElementById("description");
