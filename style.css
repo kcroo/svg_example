@@ -2,10 +2,27 @@ h1 {
     color: red;
 }
 
+.description {
+    pointer-events: none;
+    position: absolute;
+    font-size: 18px;
+    text-align: center;
+    background: white;
+    padding: 10px 15px;
+    /* z-index: 5; */
+    height: 30px;
+    line-height: 30px;
+    margin: 0 auto;
+    color: #21669e;
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #eee;
+}
+
 .inactive {
     display: none;
 }
 
 .active {
-    display: inline;
+    display: block;
+    position: absolute;
 }
