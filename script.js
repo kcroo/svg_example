@@ -17,13 +17,17 @@ let district_descriptions = {
     "district5": "District 5"
 };
 
-district1.addEventListener("mouseenter", event => {
+function addDescriptionBox(description, event) {
     description.classList.remove("inactive");
     description.classList.add("active");
     xCoord = event.clientX + "px";
     yCoord = event.clientY + "px";
     description.style.left = xCoord;
     description.style.top = yCoord;
+}
+
+district1.addEventListener("mouseenter", event => {
+    addDescriptionBox(description, event);
     description.innerHTML = district_descriptions["district1"];
 });
 
@@ -33,12 +37,7 @@ district1.addEventListener("mouseleave", event => {
 });
 
 district2.addEventListener("mouseenter", event => {
-    description.classList.remove("inactive");
-    description.classList.add("active");
-    xCoord = event.clientX + "px";
-    yCoord = event.clientY + "px";
-    description.style.left = xCoord;
-    description.style.top = yCoord;
+    addDescriptionBox(description, event);
     description.innerHTML = district_descriptions["district2"];
 });
 
