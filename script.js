@@ -26,22 +26,12 @@ function addDescriptionBox(description, event) {
     description.style.top = yCoord;
 }
 
-district1.addEventListener("mouseenter", event => {
+district1.addEventListener("click", event => {
     addDescriptionBox(description, event);
     description.innerHTML = district_descriptions["district1"];
 });
 
-district1.addEventListener("mouseleave", event => {
-    description.classList.remove("active");
-    description.classList.add("inactive");
-});
-
-district2.addEventListener("mouseenter", event => {
+district2.addEventListener("click", event => {
     addDescriptionBox(description, event);
     description.innerHTML = district_descriptions["district2"];
-});
-
-district2.addEventListener("mouseleave", event => {
-    description.classList.remove("active");
-    description.classList.add("inactive");
 });
