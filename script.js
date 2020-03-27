@@ -5,11 +5,11 @@ https://codepen.io/websitebeaver/pen/oLGGNz
 */
 
 map = document.getElementById("oregon_map");
-district1 = document.getElementById("district_1");
-district2 = document.getElementById("district_2");
-district3 = document.getElementById("district_3");
-district4 = document.getElementById("district_4");
-district5 = document.getElementById("district_5");
+district1 = document.getElementById("district1");
+district2 = document.getElementById("district2");
+district3 = document.getElementById("district3");
+district4 = document.getElementById("district4");
+district5 = document.getElementById("district5");
 description = document.getElementById("description");
 
 let district_descriptions = {
