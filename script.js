@@ -7,6 +7,9 @@ https://codepen.io/websitebeaver/pen/oLGGNz
 map = document.getElementById("oregon_map");
 district1 = document.getElementById("district_1");
 district2 = document.getElementById("district_2");
+district3 = document.getElementById("district_3");
+district4 = document.getElementById("district_4");
+district5 = document.getElementById("district_5");
 description = document.getElementById("description");
 
 let district_descriptions = {
@@ -34,4 +37,19 @@ district1.addEventListener("click", event => {
 district2.addEventListener("click", event => {
     addDescriptionBox(description, event);
     description.innerHTML = district_descriptions["district2"];
+});
+
+district3.addEventListener("click", event => {
+    addDescriptionBox(description, event);
+    description.innerHTML = district_descriptions["district3"];
+});
+
+district4.addEventListener("click", event => {
+    addDescriptionBox(description, event);
+    description.innerHTML = district_descriptions["district4"];
+});
+
+district5.addEventListener("click", event => {
+    addDescriptionBox(description, event);
+    description.innerHTML = district_descriptions["district5"];
 });
