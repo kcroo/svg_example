@@ -30,15 +30,35 @@ var map = L.map('mapid').setView([44.1555966, -120.6847490], 7);
 // var bounds = [[46, -124], [42, -116]];
 // L.svgOverlay(svgElement, bounds).addTo(map);
 
+/* styling 
+"NDISTRICT":1
+"Party":"Democratic Party"
+*/
 
-var districtStyle = {
-    fillColor: "#FF0000",
-    fillOpacity: 1,
-    color: "FFFFFF",
-    weight: 2
-};
+function getFillColor(feature) {
+    if(feature.properties.Party === "Democratic Party") {
+        return "#0000FF";
+    }
+    else if (feature.properties.Party === "Republican Party") {
+        return "#FF0000";
+    }
+}
 
-var congressionalDistricts = new L.GeoJSON.AJAX("/Congressional_Districts.geojson", {style: districtStyle});
+function defineStyle(feature) {
+    return {
+        fillColor: getFillColor(feature),
+        fillOpacity: 1,
+        weight: 6,
+        opacity: 1,
+        color: "#FFFFFF"
+    }
+}
+
+
+var congressionalDistricts = new L.GeoJSON.AJAX("/Congressional_Districts.geojson", {style: (feature) => {
+    return defineStyle(feature);
+}});
+//const congressionalDistricts = new L.GeoJSON("/Congressional_Districts.geojson", {style: defineStyle(FeatureCollection)});
 congressionalDistricts.addTo(map);
 
 var countyStyle = {
