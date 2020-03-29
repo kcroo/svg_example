@@ -54,11 +54,13 @@ function defineStyle(feature) {
     }
 }
 
+function onEachFeature(feature, layer) {
+    let text = feature.properties.Name + ": " + feature.properties.Party;
+    layer.bindPopup(text, keepInView=true);
+}
 
-var congressionalDistricts = new L.GeoJSON.AJAX("/Congressional_Districts.geojson", {style: (feature) => {
-    return defineStyle(feature);
-}});
-//const congressionalDistricts = new L.GeoJSON("/Congressional_Districts.geojson", {style: defineStyle(FeatureCollection)});
+
+var congressionalDistricts = new L.GeoJSON.AJAX("/Congressional_Districts.geojson", {style: defineStyle, onEachFeature: onEachFeature});
 congressionalDistricts.addTo(map);
 
 var countyStyle = {
@@ -67,7 +69,8 @@ var countyStyle = {
     weight: 1
 };
 
-var oregonCounties = new L.GeoJSON.AJAX("/oregon_counties.geojson", {style: countyStyle});       
+// interactive set to false allows popups from lower layer to display
+var oregonCounties = new L.GeoJSON.AJAX("/oregon_counties.geojson", {style: countyStyle, interactive: false});       
 oregonCounties.addTo(map);
 
 // map = document.getElementById("oregon_map");
