@@ -30,7 +30,7 @@ function getDistrictStyle(feature) {
 }
 
 // style for counties: no fill, thin black outline
-var countyStyle = {
+const countyStyle = {
     fillOpacity: 0,
     color: mapColors["County Lines"],
     weight: 0.4
@@ -75,15 +75,15 @@ function createLegend(map) {
 
 // create map
 // TODO: find way to auto center on geojson 
-var map = L.map('mapid').setView([44.1555966, -120.6847490], 7);
+const map = L.map('mapid').setView([44.1555966, -120.6847490], 7);
 
 // make congressional district layer and add to map
-var congressionalDistricts = new L.GeoJSON.AJAX("/Congressional_Districts.geojson", {style: getDistrictStyle, onEachFeature: onEachFeature});
+const congressionalDistricts = new L.GeoJSON.AJAX("/Congressional_Districts.geojson", {style: getDistrictStyle, onEachFeature: onEachFeature});
 congressionalDistricts.addTo(map);
 
 // make county layer and add to map
 // interactive set to false allows popups from lower layer to display
-var oregonCounties = new L.GeoJSON.AJAX("/oregon_counties.geojson", {style: countyStyle, interactive: false});       
+const oregonCounties = new L.GeoJSON.AJAX("/oregon_counties.geojson", {style: countyStyle, interactive: false});       
 oregonCounties.addTo(map);
 
 // add legend 
@@ -98,7 +98,7 @@ legend.addTo(map);
 
 /******* make stadia map below leaflet map ***********/
 // create stadia map
-var stadiaMap = L.map('stadiaMap').setView([44.1555966, -120.6847490], 7);
+const stadiaMap = L.map('stadiaMap').setView([44.1555966, -120.6847490], 7);
 
 // add stadia map
 L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png', {
@@ -106,9 +106,9 @@ L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.pn
     attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
 }).addTo(stadiaMap);
 
-var congressionalDistrictsStadia = new L.GeoJSON.AJAX("/Congressional_Districts.geojson", {style: getDistrictStyle, onEachFeature: onEachFeature});
+const congressionalDistrictsStadia = new L.GeoJSON.AJAX("/Congressional_Districts.geojson", {style: getDistrictStyle, onEachFeature: onEachFeature});
 congressionalDistrictsStadia.addTo(stadiaMap);
-var oregonCountiesStadia = new L.GeoJSON.AJAX("/oregon_counties.geojson", {style: countyStyle, interactive: false});   
+const oregonCountiesStadia = new L.GeoJSON.AJAX("/oregon_counties.geojson", {style: countyStyle, interactive: false});   
 oregonCountiesStadia.addTo(stadiaMap);
 
 const legendStadia = L.control({position: 'topright'});
