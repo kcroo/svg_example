@@ -1,6 +1,12 @@
 // create leaflet map
 var map = L.map('mapid').setView([44.1555966, -120.6847490], 7);
 
+// add stadia map
+L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png', {
+    maxZoom: 20,
+    attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+}).addTo(map);
+
 const mapColors = {
     "Congressional Districts Lines": "#000000",
     "Democratic Party": "#0000FF",
@@ -22,7 +28,7 @@ function getFillColor(feature) {
 function defineStyle(feature) {
     return {
         fillColor: getFillColor(feature),
-        fillOpacity: 1,
+        fillOpacity: 0.5,
         weight: 6,
         opacity: 1,
         color: mapColors["Congressional Districts Lines"]
