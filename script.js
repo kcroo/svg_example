@@ -61,16 +61,17 @@ legend.onAdd = (map) => {
 
     // loop through our density intervals and generate a label with a colored square for each interval
     for(let key in mapColors) {
-        console.log(key);
-        console.log(mapColors[key]);
+        // bold line in legend for congressional district boundaries 
         if (key === "Congressional Districts Lines") {
             div.innerHTML +=
             '<span style="color:' + mapColors[key] + '"><b>&mdash;</b></span>' + key + '<br>';
         }
+        // normal line in legend for county lines 
         else if (key === "County Lines") {
             div.innerHTML +=
             '<span style="color:' + mapColors[key] + '">&mdash;</span>' + key + '<br>';
         }
+        // color boxes for party
         else {
             div.innerHTML +=
             '<i style="background:' + mapColors[key] + '"></i>' + key + '<br>';
