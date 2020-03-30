@@ -54,8 +54,8 @@ oregonCounties.addTo(map);
 // add legend 
 const legend = L.control({position: 'topright'});
 
-legend.onAdd = (map) => {
-    // creates div with classes info and legend 
+function createLegend(map) {
+   // creates div with classes info and legend 
     const div = L.DomUtil.create('div', 'info legend');
     div.innerHTML += '<h3>Legend</h3>';
 
@@ -76,11 +76,12 @@ legend.onAdd = (map) => {
             div.innerHTML +=
             '<i style="background:' + mapColors[key] + '"></i>' + key + '<br>';
         }
-        
     }
 
     return div;
-};
+}
+
+legend.onAdd = createLegend;
 
 legend.addTo(map);
 
@@ -102,32 +103,6 @@ var oregonCountiesStadia = new L.GeoJSON.AJAX("/oregon_counties.geojson", {style
 oregonCountiesStadia.addTo(stadiaMap);
 
 const legendStadia = L.control({position: 'topright'});
-legendStadia.onAdd = (stadiaMap) => {
-    // creates div with classes info and legend 
-    const div = L.DomUtil.create('div', 'info legend');
-    div.innerHTML += '<h3>Legend</h3>';
-
-    // loop through our density intervals and generate a label with a colored square for each interval
-    for(let key in mapColors) {
-        // bold line in legend for congressional district boundaries 
-        if (key === "Congressional Districts Lines") {
-            div.innerHTML +=
-            '<span style="color:' + mapColors[key] + '"><b>&mdash;</b></span>' + key + '<br>';
-        }
-        // normal line in legend for county lines 
-        else if (key === "County Lines") {
-            div.innerHTML +=
-            '<span style="color:' + mapColors[key] + '">&mdash;</span>' + key + '<br>';
-        }
-        // color boxes for party
-        else {
-            div.innerHTML +=
-            '<i style="background:' + mapColors[key] + '"></i>' + key + '<br>';
-        }
-        
-    }
-
-    return div;
-};
+legendStadia.onAdd = createLegend;
 
 legendStadia.addTo(stadiaMap);
