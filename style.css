@@ -1,7 +1,17 @@
-#mapid { height: 1000px; }
+html, body {
+    height: 100vh;
+    width: 100vw;
+}
+
+#mapid {
+    height: 80%;
+    width: 90%;
+    margin: 0 auto;
+}
 
 h1 {
-    color: red;
+    color: black;
+    text-align: center;
 }
 
 .description {

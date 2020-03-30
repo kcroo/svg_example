@@ -52,7 +52,7 @@ var oregonCounties = new L.GeoJSON.AJAX("/oregon_counties.geojson", {style: coun
 oregonCounties.addTo(map);
 
 // add legend 
-const legend = L.control({position: 'bottomright'});
+const legend = L.control({position: 'topright'});
 
 legend.onAdd = (map) => {
     // creates div with classes info and legend 
