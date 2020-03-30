@@ -1,11 +1,5 @@
-// create leaflet map
+// create leaflet only map
 var map = L.map('mapid').setView([44.1555966, -120.6847490], 7);
-
-// add stadia map
-L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png', {
-    maxZoom: 20,
-    attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
-}).addTo(map);
 
 const mapColors = {
     "Congressional Districts Lines": "#000000",
@@ -89,3 +83,51 @@ legend.onAdd = (map) => {
 };
 
 legend.addTo(map);
+
+
+
+/******* make stadia map below leaflet map ***********/
+// create stadia map
+var stadiaMap = L.map('stadiaMap').setView([44.1555966, -120.6847490], 7);
+
+// add stadia map
+L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png', {
+    maxZoom: 20,
+    attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+}).addTo(stadiaMap);
+
+var congressionalDistrictsStadia = new L.GeoJSON.AJAX("/Congressional_Districts.geojson", {style: defineStyle, onEachFeature: onEachFeature});
+congressionalDistrictsStadia.addTo(stadiaMap);
+var oregonCountiesStadia = new L.GeoJSON.AJAX("/oregon_counties.geojson", {style: countyStyle, interactive: false});   
+oregonCountiesStadia.addTo(stadiaMap);
+
+const legendStadia = L.control({position: 'topright'});
+legendStadia.onAdd = (stadiaMap) => {
+    // creates div with classes info and legend 
+    const div = L.DomUtil.create('div', 'info legend');
+    div.innerHTML += '<h3>Legend</h3>';
+
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for(let key in mapColors) {
+        // bold line in legend for congressional district boundaries 
+        if (key === "Congressional Districts Lines") {
+            div.innerHTML +=
+            '<span style="color:' + mapColors[key] + '"><b>&mdash;</b></span>' + key + '<br>';
+        }
+        // normal line in legend for county lines 
+        else if (key === "County Lines") {
+            div.innerHTML +=
+            '<span style="color:' + mapColors[key] + '">&mdash;</span>' + key + '<br>';
+        }
+        // color boxes for party
+        else {
+            div.innerHTML +=
+            '<i style="background:' + mapColors[key] + '"></i>' + key + '<br>';
+        }
+        
+    }
+
+    return div;
+};
+
+legendStadia.addTo(stadiaMap);
